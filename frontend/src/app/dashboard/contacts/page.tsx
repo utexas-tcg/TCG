@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useContacts } from '@/hooks/useContacts'
 import { useReactTable, getCoreRowModel, flexRender, createColumnHelper } from '@tanstack/react-table'
 import type { Contact } from '@/types'
-import { Plus, Search } from 'lucide-react'
+import { Plus, Search, Download } from 'lucide-react'
 import FadeIn from '@/components/ReactBits/FadeIn'
 import BlurText from '@/components/ReactBits/BlurText'
 import { SkeletonTable } from '@/components/ReactBits/Skeleton'
@@ -33,6 +33,25 @@ const columns = [
   }),
 ]
 
+function exportCSV(contacts: Contact[]) {
+  const headers = ['Name', 'Email', 'Title', 'Source', 'Added']
+  const rows = contacts.map(c => [
+    `${c.first_name} ${c.last_name}`,
+    c.email ?? '',
+    c.title ?? '',
+    c.source ?? '',
+    new Date(c.created_at).toLocaleDateString(),
+  ])
+  const csv = [headers, ...rows].map(r => r.map(v => `"${v}"`).join(',')).join('\n')
+  const blob = new Blob([csv], { type: 'text/csv' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'contacts.csv'
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
 export default function ContactsPage() {
   const [page, setPage] = useState(1)
   const [apolloOpen, setApolloOpen] = useState(false)
@@ -58,6 +77,14 @@ export default function ContactsPage() {
           <p className="text-tcg-gray-600 text-sm mt-1">{total} total contacts</p>
         </div>
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => exportCSV(contacts)}
+            disabled={contacts.length === 0}
+            className="flex items-center gap-2 px-4 py-2 border border-tcg-gray-100 text-tcg-gray-600 rounded-lg text-sm font-medium hover:bg-tcg-gray-50 transition-colors disabled:opacity-50"
+          >
+            <Download className="w-4 h-4" />
+            Export CSV
+          </button>
           <button
             onClick={() => setApolloOpen(true)}
             className="flex items-center gap-2 px-4 py-2 border border-tcg-blue-500 text-tcg-blue-600 rounded-lg text-sm font-medium hover:bg-tcg-blue-50 transition-colors"

@@ -13,7 +13,7 @@ class ActivityLog(Base):
     entity_type: Mapped[str] = mapped_column(String)
     entity_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True))
     action: Mapped[str] = mapped_column(String)
-    metadata: Mapped[dict | None] = mapped_column(JSONB)
+    extra_data: Mapped[dict | None] = mapped_column(JSONB, name="metadata")
     performed_by: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("users.id"))
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False

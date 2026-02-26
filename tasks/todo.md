@@ -46,17 +46,17 @@
 - [ ] Phase 4 commit
 
 ## Phase 5 — Search & Polish
-- [ ] tsvector + GIN indexes + triggers
-- [ ] Universal search API
-- [ ] Search UI page
-- [ ] Bulk actions (CSV export)
-- [ ] Mobile responsive
-- [ ] Error boundaries
-- [ ] Phase 5 commit
+- [x] tsvector + GIN indexes + triggers
+- [x] Universal search API
+- [x] Search UI page
+- [x] Bulk actions (CSV export)
+- [x] Mobile responsive
+- [x] Error boundaries
+- [x] Phase 5 commit
 
 ## Phase 6 — Deployment
-- [ ] vercel.json
-- [ ] Railway config
-- [ ] CI/CD pipelines
-- [ ] Production env templates
-- [ ] Phase 6 commit
+- [x] vercel.json
+- [x] Railway config
+- [x] CI/CD pipelines
+- [x] Production env templates
+- [x] Phase 6 commit
