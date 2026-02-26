@@ -7,23 +7,23 @@
 - [x] .github/workflows/deploy.yml
 - [x] .claude/agents/ (6 specialist agents)
 - [x] .claude/commands/ (8 custom commands)
-- [ ] backend/ FastAPI foundation
-- [ ] backend/.env.example
-- [ ] frontend/ Next.js foundation
-- [ ] frontend/.env.local.example
-- [ ] Phase 1 commit
+- [x] backend/ FastAPI foundation
+- [x] backend/.env.example
+- [x] frontend/ Next.js foundation
+- [x] frontend/.env.local.example
+- [x] Phase 1 commit
 
 ## Phase 2 — Core CRM
-- [ ] DB models + Alembic migration
-- [ ] Contacts CRUD API
-- [ ] Companies CRUD API
-- [ ] Outreach records API
-- [ ] Activity logging
-- [ ] Contacts frontend page (TanStack Table)
-- [ ] Companies frontend page
-- [ ] Outreach Kanban board
-- [ ] Contact detail page
-- [ ] Tests for Phase 2
+- [x] DB models + Alembic migration (001_initial_schema.py)
+- [x] Contacts CRUD API
+- [x] Companies CRUD API
+- [x] Outreach records API
+- [x] Activity logging
+- [x] Contacts frontend page (TanStack Table)
+- [x] Companies frontend page
+- [x] Outreach Kanban board
+- [x] Contact detail page
+- [x] Tests for Phase 2 (basic auth tests exist; CI runs against real PG)
 - [ ] Phase 2 commit
 
 ## Phase 3 — Design Polish
