@@ -3,10 +3,11 @@ import { useState } from 'react'
 import { useContacts } from '@/hooks/useContacts'
 import { useReactTable, getCoreRowModel, flexRender, createColumnHelper } from '@tanstack/react-table'
 import type { Contact } from '@/types'
-import { Plus } from 'lucide-react'
+import { Plus, Search } from 'lucide-react'
 import FadeIn from '@/components/ReactBits/FadeIn'
 import BlurText from '@/components/ReactBits/BlurText'
 import { SkeletonTable } from '@/components/ReactBits/Skeleton'
+import { ApolloSearchPanel } from '@/components/ApolloSearchPanel'
 
 const columnHelper = createColumnHelper<Contact>()
 
@@ -34,6 +35,7 @@ const columns = [
 
 export default function ContactsPage() {
   const [page, setPage] = useState(1)
+  const [apolloOpen, setApolloOpen] = useState(false)
   const { data, isLoading } = useContacts(page)
   const contacts = data?.data ?? []
   const total = data?.meta.total ?? 0
@@ -55,11 +57,22 @@ export default function ContactsPage() {
           />
           <p className="text-tcg-gray-600 text-sm mt-1">{total} total contacts</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-tcg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-tcg-blue-500 transition-colors">
-          <Plus className="w-4 h-4" />
-          Add Contact
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setApolloOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 border border-tcg-blue-500 text-tcg-blue-600 rounded-lg text-sm font-medium hover:bg-tcg-blue-50 transition-colors"
+          >
+            <Search className="w-4 h-4" />
+            Search Apollo
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 bg-tcg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-tcg-blue-500 transition-colors">
+            <Plus className="w-4 h-4" />
+            Add Contact
+          </button>
+        </div>
       </div>
+
+      <ApolloSearchPanel open={apolloOpen} onClose={() => setApolloOpen(false)} />
 
       {isLoading ? (
         <SkeletonTable rows={5} />

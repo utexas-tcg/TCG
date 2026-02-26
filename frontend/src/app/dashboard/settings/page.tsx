@@ -10,7 +10,7 @@ export default function SettingsPage() {
   async function saveApolloKey() {
     setSaving(true)
     try {
-      await api.post('/api/v1/apollo/set-api-key', { api_key: apolloKey })
+      await api.put('/api/v1/auth/me', { apollo_api_key: apolloKey })
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
     } catch {

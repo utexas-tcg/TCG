@@ -1,7 +1,9 @@
 'use client'
+import { useState } from 'react'
 import { useEmails } from '@/hooks/useEmails'
 import { Send } from 'lucide-react'
 import type { EmailLog } from '@/types'
+import { EmailComposer } from '@/components/EmailComposer'
 
 function StatusBadge({ status }: { status: EmailLog['status'] }) {
   const styles = {
@@ -14,6 +16,7 @@ function StatusBadge({ status }: { status: EmailLog['status'] }) {
 }
 
 export default function EmailsPage() {
+  const [composeOpen, setComposeOpen] = useState(false)
   const { data, isLoading } = useEmails()
   const emails = data?.data ?? []
 
@@ -21,11 +24,16 @@ export default function EmailsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-tcg-gray-900">Emails</h1>
-        <button className="flex items-center gap-2 px-4 py-2 bg-tcg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-tcg-blue-500 transition-colors">
+        <button
+          onClick={() => setComposeOpen(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-tcg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-tcg-blue-500 transition-colors"
+        >
           <Send className="w-4 h-4" />
           Compose
         </button>
       </div>
+
+      <EmailComposer open={composeOpen} onClose={() => setComposeOpen(false)} />
 
       <div className="bg-white rounded-xl shadow-sm border border-tcg-blue-100 overflow-hidden">
         {isLoading ? (
