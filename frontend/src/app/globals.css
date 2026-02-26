@@ -1,26 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-tcg-blue-900: #0a1628;
+  --color-tcg-blue-800: #0f2044;
+  --color-tcg-blue-700: #1a3a6b;
+  --color-tcg-blue-600: #1e4d8c;
+  --color-tcg-blue-500: #2563eb;
+  --color-tcg-blue-400: #3b82f6;
+  --color-tcg-blue-100: #dbeafe;
+  --color-tcg-blue-50: #eff6ff;
+  --color-tcg-gold: #f59e0b;
+  --color-tcg-green: #10b981;
+  --color-tcg-red: #ef4444;
+  --color-tcg-gray-50: #f8fafc;
+  --color-tcg-gray-100: #f1f5f9;
+  --color-tcg-gray-400: #94a3b8;
+  --color-tcg-gray-600: #475569;
+  --color-tcg-gray-900: #0f172a;
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #eff6ff;
+  color: #0f172a;
+  font-family: 'Inter', system-ui, sans-serif;
 }
